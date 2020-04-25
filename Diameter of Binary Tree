@@ -1,0 +1,62 @@
+class NodeDiameter
+{
+	int value;
+	NodeDiameter Left;
+	NodeDiameter Right;
+	public NodeDiameter(int root)
+	{
+		value = root;
+		Left=Right=null;
+	}
+}
+public class DiameterofBinaryTree 
+{
+	NodeDiameter root;
+	private static int Height(NodeDiameter root) {
+		if(root==null)
+			return 0;
+		else
+		{
+			int Left = Height(root.Left);
+			int Right = Height(root.Right);
+			if(Left>Right)
+			{
+				return Left+1;
+			}
+			return Right+1;
+		}
+		
+	}
+	static int diameter(NodeDiameter root) 
+    { 
+        
+        if (root == null) 
+            return 0; 
+
+        int lheight = Height(root.Left); 
+        int rheight = Height(root.Right); 
+
+        int ldiameter = diameter(root.Left); 
+        int rdiameter = diameter(root.Right); 
+ 
+        return Math.max(lheight + rheight + 1, 
+                        Math.max(ldiameter, rdiameter)); 
+  
+    } 
+  
+	public static void main(String[] args) {
+		DiameterofBinaryTree node = new DiameterofBinaryTree();
+		node.root = new NodeDiameter(1);
+		node.root.Left = new NodeDiameter(2);
+		node.root.Right = new NodeDiameter(3);
+		node.root.Left.Left = new NodeDiameter(4);
+		node.root.Left.Right = new NodeDiameter(5);
+	
+		System.out.println("------------Diameter Is-----------");
+		int h = diameter(node.root);
+		System.out.println(h);
+		
+	}
+
+}
+//time complexity is o(n^2)
