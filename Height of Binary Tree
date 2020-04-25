@@ -1,0 +1,44 @@
+class NodeHeight
+{
+	int value;
+	NodeHeight Left;
+	NodeHeight Right;
+	public NodeHeight(int root)
+	{
+		value = root;
+		Left=Right=null;
+	}
+}
+public class HeightofBinaryTree 
+{
+	NodeHeight root;
+	private static int Height(NodeHeight root) {
+		if(root==null)
+			return 0;
+		else
+		{
+			int Left = Height(root.Left);
+			int Right = Height(root.Right);
+			if(Left>Right)
+			{
+				return Left+1;
+			}
+			return Right+1;
+		}
+		
+	}
+	public static void main(String[] args) {
+		HeightofBinaryTree node = new HeightofBinaryTree();
+		node.root = new NodeHeight(1);
+		node.root.Left = new NodeHeight(2);
+		node.root.Right = new NodeHeight(3);
+		node.root.Left.Left = new NodeHeight(4);
+		node.root.Left.Right = new NodeHeight(5);
+		node.root.Right.Left = new NodeHeight(6);
+		System.out.println("------------Height Is-----------");
+		int h = Height(node.root);
+		System.out.println(h);
+		
+	}
+
+}
