@@ -1,0 +1,52 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class NodeBFS
+{
+	int value;
+	NodeBFS Left;
+	NodeBFS Right;
+	public NodeBFS(int root)
+	{
+		value = root;
+		Left=Right=null;
+	}
+}
+public class BFS
+{
+	 static NodeBFS root;
+	static void Traversal()
+	{
+		Queue<NodeBFS> q = new LinkedList<NodeBFS>();
+		q.add(root);
+		while(!q.isEmpty())
+		{
+			NodeBFS n = q.poll();
+			System.out.print(n.value+" ");
+			if(n.Left!=null)
+			{
+				q.add(n.Left);
+			}
+			if(n.Right!=null)
+			{
+				q.add(n.Right);
+			}
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		BFS node = new BFS();
+		node.root = new NodeBFS(1);
+		node.root.Left = new NodeBFS(2);
+		node.root.Right = new NodeBFS(3);
+		node.root.Left.Left = new NodeBFS(4);
+		node.root.Left.Right = new NodeBFS(5);
+		node.root.Right.Left = new NodeBFS(6);
+		System.out.println("-------------BFS IS------------");
+		Traversal();
+		
+	}
+	
+
+}
